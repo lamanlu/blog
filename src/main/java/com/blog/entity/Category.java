@@ -7,7 +7,7 @@ import javax.validation.constraints.NotNull;
  * Created by LamanLu on 2016/11/7.
  */
 @Entity
-@Table(name = "type")
+@Table(name = "category")
 public class Category {
 
     @Id
