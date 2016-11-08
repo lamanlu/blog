@@ -48,7 +48,7 @@ public class CategoryController extends CoreController {
             return ex.toString();
         }
 
-        return showNotice(modelMap,"ID:"+id,"/admin/category/add");
+        return showNotice(modelMap,"ID:"+id,"/admin/category");
     }
 
 

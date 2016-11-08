@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: LamanLu
@@ -12,7 +13,30 @@
 </head>
 <body>
 <form name="form1" action="/admin/article/save" method="post">
-    <input type="text" name="name" value=""/>
+    标题：<input type="text" name="title" value=""/>
+    <br>
+    分类：
+    <select name="categoy_id">
+        <c:forEach items="${categories}" var="category">
+            <option value="${category.id}">${category.name}</option>
+        </c:forEach>
+    </select>
+    <br>
+    内容：
+    <textarea rows="20" cols="50"></textarea>
+    <br>
+    标签：
+    <c:forEach items="${tags}" var="tag">
+        <input type="checkbox" id="tag_${tag.id}" value="${tag.id}"/><label for="tag_${tag.id}">${tag.name}</label>&nbsp;&nbsp;&nbsp;&nbsp;
+    </c:forEach>
+    <br>
+    状态：
+    <select name="status">
+        <c:forEach items="${status}" var="tmp">
+            <option value="${tmp.key}">${tmp.value}</option>
+        </c:forEach>
+    </select>
+    <br>
     <input type="submit" name="submit" value="保存"/>
 </form>
 </body>
