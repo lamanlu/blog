@@ -16,18 +16,18 @@
     标题：<input type="text" name="title" value=""/>
     <br>
     分类：
-    <select name="categoy_id">
+    <select name="category_id">
         <c:forEach items="${categories}" var="category">
             <option value="${category.id}">${category.name}</option>
         </c:forEach>
     </select>
     <br>
     内容：
-    <textarea rows="20" cols="50"></textarea>
+    <textarea name="content" rows="10" cols="50"></textarea>
     <br>
     标签：
     <c:forEach items="${tags}" var="tag">
-        <input type="checkbox" id="tag_${tag.id}" value="${tag.id}"/><label for="tag_${tag.id}">${tag.name}</label>&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="checkbox" name="tags[]" id="tag_${tag.id}" value="${tag.id}"/><label for="tag_${tag.id}">${tag.name}</label>&nbsp;&nbsp;&nbsp;&nbsp;
     </c:forEach>
     <br>
     状态：

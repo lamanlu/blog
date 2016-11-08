@@ -19,7 +19,6 @@
         <th>标题</th>
         <th>分类</th>
         <th>状态</th>
-        <th>排序</th>
         <th>操作</th>
     </tr>
     <c:forEach items="${articles}" var="article">
@@ -28,7 +27,6 @@
             <td>${article.title}</td>
             <td>${article.category_id}</td>
             <td>${article.status}</td>
-            <td>${article.sort}</td>
             <td>
                 <a href="/admin/article/edit?id=${article.id}">编辑</a>
             </td>

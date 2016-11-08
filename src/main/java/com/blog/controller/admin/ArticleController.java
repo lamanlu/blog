@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.HashMap;
 import java.util.List;
@@ -20,7 +21,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping(value = "/admin/article")
-public class ArticleController {
+public class ArticleController extends CoreController {
 
     @Autowired
     private ArticleDao articleDao;
@@ -64,5 +65,21 @@ public class ArticleController {
         return "admin/article/add";
     }
 
+    @RequestMapping(value = "/save",method = RequestMethod.POST)
+    public String save(Article article,
+                       @RequestParam(value = "tags[]", defaultValue = "") String[] tags,
+                       ModelMap modelMap){
+
+        System.out.println(tags[0] + tags[1] + tags[2]);
+
+        try {
+            this.articleDao.save(article);
+            int id = article.getId();
+        }catch (Exception ex){
+            return ex.toString();
+        }
+
+        return showNotice(modelMap,"保存成功","/admin/article");
+    }
 
 }

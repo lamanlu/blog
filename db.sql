@@ -19,7 +19,7 @@ CREATE TABLE `article` (
   `content` text NOT NULL,
   `status` tinyint(4) NOT NULL DEFAULT '0',
   `create_time` int(10) unsigned NOT NULL DEFAULT '0',
-  `uptime_time` int(10) unsigned NOT NULL DEFAULT '0',
+  `update_time` int(10) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
