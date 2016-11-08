@@ -25,6 +25,8 @@ public class Article {
 
     private long update_time;
 
+//    private Category category;
+
     public Article() {
     }
 
@@ -92,4 +94,14 @@ public class Article {
     public void setUpdate_time(long update_time) {
         this.update_time = update_time;
     }
+
+//    @ManyToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+//    @JoinColumn(name = "id", referencedColumnName = "category_id", table = "category")
+//    public Category getCategory() {
+//        return category;
+//    }
+//
+//    public void setCategory(Category category) {
+//        this.category = category;
+//    }
 }
