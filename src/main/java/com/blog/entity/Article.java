@@ -1,5 +1,7 @@
 package com.blog.entity;
 
+import org.hibernate.annotations.SQLInsert;
+
 import javax.persistence.*;
 
 /**
@@ -13,6 +15,7 @@ public class Article {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
+//    @Column(nullable = true)
     private int category_id;
 
     private String title;
@@ -25,12 +28,14 @@ public class Article {
 
     private long update_time;
 
-//    private Category category;
+    @ManyToOne(optional = false, targetEntity = Category.class)
+    @JoinColumn(name = "category_id", referencedColumnName = "id", insertable = false, updatable = false)
+    private Category category;
 
     public Article() {
     }
 
-    public Article(int category_id, String title, String content, byte status, long create_time, long update_time) {
+    public Article(Integer category_id, String title, String content, byte status, long create_time, long update_time) {
         this.category_id = category_id;
         this.title = title;
         this.content = content;
@@ -95,13 +100,11 @@ public class Article {
         this.update_time = update_time;
     }
 
-//    @ManyToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
-//    @JoinColumn(name = "id", referencedColumnName = "category_id", table = "category")
-//    public Category getCategory() {
-//        return category;
-//    }
-//
-//    public void setCategory(Category category) {
-//        this.category = category;
-//    }
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
 }

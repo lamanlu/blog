@@ -3,6 +3,8 @@ package com.blog.entity;
 import org.hibernate.annotations.GeneratorType;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  * Created by LamanLu on 2016/11/8.
@@ -14,8 +16,13 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+
     private String name;
+
     private int sort;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "category", cascade = CascadeType.REMOVE, targetEntity = Article.class)
+    private Collection<Article> articles = new ArrayList<Article>();
 
     public Category() {
     }
