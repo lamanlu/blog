@@ -13,6 +13,7 @@
 <body>
 <form name="form1" action="/admin/category/save" method="post">
     <input type="text" name="name" value=""/>
+    <input type="text" name="sort" value="0"/>
     <input type="submit" name="submit" value="保存"/>
 </form>
 </body>
