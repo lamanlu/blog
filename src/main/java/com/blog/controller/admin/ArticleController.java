@@ -68,9 +68,24 @@ public class ArticleController extends CoreController {
         return "admin/article/add";
     }
 
+    @RequestMapping(value = "/edit",method = RequestMethod.GET)
+    public String editView(@RequestParam(value = "id", defaultValue = "0") int id,
+            ModelMap modelMap){
+
+        Article article = this.articleDao.findOne(id);
+
+        List<Tag> tags = this.tagDao.findAll();
+        List<Category> categories = this.categoryDao.findAll();
+
+        modelMap.addAttribute("tags",tags);
+        modelMap.addAttribute("categories",categories);
+        modelMap.addAttribute("status",status);
+        modelMap.addAttribute("article",article);
+        return "admin/article/edit";
+    }
+
     @RequestMapping(value = "/save",method = RequestMethod.POST)
     public String save(Article article,
-                       @RequestParam(value = "tags") List<String> tags,
                        ModelMap modelMap){
 
         try {

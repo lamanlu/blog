@@ -9,34 +9,35 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Add Article</title>
+    <title>Edit Article</title>
 </head>
 <body>
 <form name="form1" action="/admin/article/save" method="post">
-    标题：<input type="text" name="title" value=""/>
+    标题：<input type="text" name="title" value="${article.title}"/>
     <br>
     分类：
     <select name="category_id">
         <c:forEach items="${categories}" var="category">
-            <option value="${category.id}">${category.name}</option>
+            <option value="${category.id}" <c:if test="${article.category_id == category.id}">selected="selected"</c:if>>${category.name}</option>
         </c:forEach>
     </select>
     <br>
     内容：
-    <textarea name="content" rows="10" cols="50"></textarea>
+    <textarea name="content" rows="10" cols="50">${article.content}</textarea>
     <br>
     标签：
     <c:forEach items="${tags}" var="tag">
-        <input type="checkbox" name="tags" id="tag_${tag.id}" value="${tag.id}"/><label for="tag_${tag.id}">${tag.name}</label>&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="checkbox" name="tags" id="tag_${tag.id}" value="${tag.id}" checked="checked"/><label for="tag_${tag.id}">${tag.name}</label>&nbsp;&nbsp;&nbsp;&nbsp;
     </c:forEach>
     <br>
     状态：
     <select name="status">
         <c:forEach items="${status}" var="tmp">
-            <option value="${tmp.key}">${tmp.value}</option>
+            <option value="${tmp.key}" <c:if test="${article.status == tmp.key}">selected="selected"</c:if>>${tmp.value}</option>
         </c:forEach>
     </select>
     <br>
+    <input type="hidden" name="id" value="${article.id}"/>
     <input type="submit" name="submit" value="保存"/>
 </form>
 </body>
