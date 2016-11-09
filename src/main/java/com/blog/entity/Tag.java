@@ -1,6 +1,12 @@
 package com.blog.entity;
 
+import jdk.nashorn.internal.objects.annotations.Getter;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Created by LamanLu on 2016/11/8.
@@ -10,14 +16,21 @@ import javax.persistence.*;
 public class Tag {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String name;
 
     private int sort;
 
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "tags",cascade = CascadeType.ALL)
+    private Set<Article> articles = new HashSet<Article>();
+
     public Tag() {
+    }
+
+    public Tag(String name) {
+        this.name = name;
     }
 
     public Tag(String name, int sort) {
@@ -47,5 +60,13 @@ public class Tag {
 
     public void setSort(int sort) {
         this.sort = sort;
+    }
+
+    public Set<Article> getArticles() {
+        return articles;
+    }
+
+    public void setArticles(Set<Article> articles) {
+        this.articles = articles;
     }
 }

@@ -3,6 +3,8 @@ package com.blog.entity;
 import org.hibernate.annotations.SQLInsert;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by LamanLu on 2016/11/8.
@@ -12,10 +14,11 @@ import javax.persistence.*;
 public class Article {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+//    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-//    @Column(nullable = true)
+    @Column(nullable = false)
     private int category_id;
 
     private String title;
@@ -31,6 +34,12 @@ public class Article {
     @ManyToOne(optional = false, targetEntity = Category.class)
     @JoinColumn(name = "category_id", referencedColumnName = "id", insertable = false, updatable = false)
     private Category category;
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "article_tag_map",
+            joinColumns = {@JoinColumn(name = "article_id", referencedColumnName = "id", nullable = false, updatable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "tag_id",referencedColumnName = "id",nullable = false,updatable = false)})
+    private Set<Tag> tags = new HashSet<Tag>();
 
     public Article() {
     }
@@ -106,5 +115,13 @@ public class Article {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public Set<Tag> getTags() {
+        return tags;
+    }
+
+    public void setTags(Set<Tag> tags) {
+        this.tags = tags;
     }
 }

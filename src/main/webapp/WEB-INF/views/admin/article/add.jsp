@@ -27,7 +27,7 @@
     <br>
     标签：
     <c:forEach items="${tags}" var="tag">
-        <input type="checkbox" name="tags[]" id="tag_${tag.id}" value="${tag.id}"/><label for="tag_${tag.id}">${tag.name}</label>&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="checkbox" name="tags" id="tag_${tag.id}" value="${tag.id}"/><label for="tag_${tag.id}">${tag.name}</label>&nbsp;&nbsp;&nbsp;&nbsp;
     </c:forEach>
     <br>
     状态：

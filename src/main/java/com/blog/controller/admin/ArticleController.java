@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by LamanLu on 2016/11/8.
@@ -50,6 +52,7 @@ public class ArticleController extends CoreController {
 
         List<Article> articles = this.articleDao.findAll();
         modelMap.addAttribute("articles",articles);
+        modelMap.addAttribute("status",status);
         return "admin/article/index";
     }
 
@@ -67,10 +70,8 @@ public class ArticleController extends CoreController {
 
     @RequestMapping(value = "/save",method = RequestMethod.POST)
     public String save(Article article,
-                       @RequestParam(value = "tags[]", defaultValue = "") String[] tags,
+                       @RequestParam(value = "tags") List<String> tags,
                        ModelMap modelMap){
-
-        System.out.println(tags[0] + tags[1] + tags[2]);
 
         try {
             this.articleDao.save(article);

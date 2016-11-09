@@ -26,7 +26,7 @@
             <td>${article.id}</td>
             <td>${article.title}</td>
             <td>${article.category.name}</td>
-            <td>${article.status}</td>
+            <td>${status[article.status]}</td>
             <td>
                 <a href="/admin/article/edit?id=${article.id}">编辑</a>
             </td>
