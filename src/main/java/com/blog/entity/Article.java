@@ -1,6 +1,5 @@
 package com.blog.entity;
 
-import org.hibernate.annotations.SQLInsert;
 
 import javax.persistence.*;
 import java.util.HashSet;
