@@ -1,4 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%--
   Created by IntelliJ IDEA.
   User: LamanLu
@@ -27,7 +29,7 @@
     <br>
     标签：
     <c:forEach items="${tags}" var="tag">
-        <input type="checkbox" name="tags" id="tag_${tag.id}" value="${tag.id}" checked="checked"/><label for="tag_${tag.id}">${tag.name}</label>&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="checkbox" name="tags" id="tag_${tag.id}" value="${tag.id}" <c:if test="${fn:contains(article.tags,tag)}">checked="checked"</c:if> /><label for="tag_${tag.id}">${tag.name}</label>&nbsp;&nbsp;&nbsp;&nbsp;
     </c:forEach>
     <br>
     状态：
