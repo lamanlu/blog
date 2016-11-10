@@ -7,6 +7,10 @@ import com.blog.entity.Article;
 import com.blog.entity.Category;
 import com.blog.entity.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -48,9 +52,16 @@ public class ArticleController extends CoreController {
     }
 
     @RequestMapping(value = {"","/"},method = RequestMethod.GET)
-    public String index(ModelMap modelMap){
+    public String index(@RequestParam(value = "page",defaultValue = "0") int page,
+                        @RequestParam(value = "limit",defaultValue = "3") int pageSize,
+            ModelMap modelMap){
 
-        List<Article> articles = this.articleDao.findAll();
+//        List<Article> articles = this.articleDao.findAll();
+
+        Sort sort = new Sort(Sort.Direction.DESC,"status");
+        Pageable pageable = new PageRequest(page,pageSize,sort);
+        List<Article> articles = this.articleDao.findAll(pageable).getContent();
+
         modelMap.addAttribute("articles",articles);
         modelMap.addAttribute("status",status);
         return "admin/article/index";
