@@ -58,7 +58,7 @@ public class ArticleController extends CoreController {
 
 //        List<Article> articles = this.articleDao.findAll();
 
-        Sort sort = new Sort(Sort.Direction.DESC,"status");
+        Sort sort = new Sort(Sort.Direction.DESC,"id");
         Pageable pageable = new PageRequest(page,pageSize,sort);
         List<Article> articles = this.articleDao.findAll(pageable).getContent();
 
