@@ -76,7 +76,7 @@ public class PageTag extends SimpleTagSupport {
 
         StringBuffer stringBuffer = new StringBuffer();
 
-        tmpStr = "<div class=\"pagination\">";
+        String tmpStr = "<div class=\"pagination\">";
         stringBuffer.append(tmpStr);
 
         if(this.curPage > 0){
