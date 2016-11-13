@@ -75,8 +75,6 @@ public class PageTag extends SimpleTagSupport {
         int pageCount = (int)Math.ceil((double)this.dataCount / this.pageSize);
 
         StringBuffer stringBuffer = new StringBuffer();
-        String tmpStr = "page:"+this.curPage+" pagesize:"+this.pageSize+" datacount:"+this.dataCount+" pageCount:"+pageCount+"<br>";
-        stringBuffer.append(tmpStr);
 
         tmpStr = "<div class=\"pagination\">";
         stringBuffer.append(tmpStr);
