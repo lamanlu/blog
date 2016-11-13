@@ -11,6 +11,8 @@
     <title>Detail Page</title>
 </head>
 <body>
-Show Detail By Id ${id}
+<h3>${article.title}</h3>
+<h4>${article.category.name}</h4>
+<div class="wrapper">${article.content}</div>
 </body>
 </html>
