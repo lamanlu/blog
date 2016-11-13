@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: laman
@@ -13,6 +14,9 @@
 <body>
 <h3>${article.title}</h3>
 <h4>${article.category.name}</h4>
+<c:forEach items="${article.tags}" var="tag">
+    <a href="/search?tag=${tag.name}">${tag.name}</a>
+</c:forEach>
 <div class="wrapper">${article.content}</div>
 </body>
 </html>

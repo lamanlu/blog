@@ -29,7 +29,6 @@ public class Index {
     public String Home(@RequestParam(value = "page",defaultValue = "0") int page,
                        ModelMap modelMap){
 
-
         Sort sort = new Sort(Sort.Direction.DESC,"id");
         Pageable pageable = new PageRequest(page,this.pageSize,sort);
         Page<Article> articlePage = this.articleDao.findAll(pageable);
