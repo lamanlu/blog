@@ -56,13 +56,16 @@ public class ArticleController extends CoreController {
                         @RequestParam(value = "limit",defaultValue = "3") int pageSize,
             ModelMap modelMap){
 
-//        List<Article> articles = this.articleDao.findAll();
 
         Sort sort = new Sort(Sort.Direction.DESC,"id");
         Pageable pageable = new PageRequest(page,pageSize,sort);
-        List<Article> articles = this.articleDao.findAll(pageable).getContent();
+        Page<Article> articlePage = this.articleDao.findAll(pageable);
 
-        modelMap.addAttribute("articles",articles);
+
+        modelMap.addAttribute("articles",articlePage.getContent());
+        modelMap.addAttribute("dataCount",articlePage.getTotalElements());
+        modelMap.addAttribute("page",page);
+        modelMap.addAttribute("pageSize",pageSize);
         modelMap.addAttribute("status",status);
         return "admin/article/index";
     }

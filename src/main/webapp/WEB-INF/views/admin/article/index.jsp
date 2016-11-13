@@ -11,6 +11,19 @@
 <html>
 <head>
     <title>Article List</title>
+    <style type="text/css">
+        .pagination{
+            display: block;
+            height: 20px;
+            line-height: 20px;
+        }
+
+        .pagination a {
+            font-size: 12px;
+            text-align: center;
+            margin-left: 5px;
+        }
+    </style>
 </head>
 <body>
 <a href="/admin/article/add">写文章</a>
@@ -34,6 +47,6 @@
         </tr>
     </c:forEach>
 </table>
-<my:pagination url="asdsad" dataCount="20" curPage="9" />
+<my:pagination url="/admin/article" dataCount="${dataCount}" curPage="${page}" pageSize="${pageSize}" />
 </body>
 </html>
