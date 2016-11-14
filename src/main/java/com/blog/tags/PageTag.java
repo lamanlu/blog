@@ -89,18 +89,24 @@ public class PageTag extends SimpleTagSupport {
 
 
         int maxPreNum = (int)Math.ceil(this.length / 2);
-
         int startPage = this.curPage - maxPreNum;
         if(startPage < 0){
             startPage = 0;
         }
 
         int lastPage = startPage + this.length;
+
         if(lastPage > pageCount){
-            this.length = this.length - (lastPage - pageCount);
+            int preAdd = lastPage - pageCount;
+            startPage -= preAdd;
+            lastPage = pageCount;
         }
 
-        for(int i = startPage; i < this.length; i++ ){
+        if(startPage < 0){
+            startPage = 0;
+        }
+
+        for(int i = startPage; i < lastPage; i++ ){
             if(i == this.curPage){
                 tmpStr = "<a href=\"javascript:void(0);\">"+(i+1)+"</a>";
                 stringBuffer.append(tmpStr);

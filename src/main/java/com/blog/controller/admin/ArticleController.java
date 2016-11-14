@@ -53,7 +53,7 @@ public class ArticleController extends CoreController {
 
     @RequestMapping(value = {"","/"},method = RequestMethod.GET)
     public String index(@RequestParam(value = "page",defaultValue = "0") int page,
-                        @RequestParam(value = "limit",defaultValue = "3") int pageSize,
+                        @RequestParam(value = "limit",defaultValue = "15") int pageSize,
             ModelMap modelMap){
 
 
