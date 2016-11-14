@@ -26,6 +26,7 @@ public class Article {
 
     private byte status;
 
+    @Column(updatable = false)
     private long create_time;
 
     private long update_time;
@@ -43,13 +44,11 @@ public class Article {
     public Article() {
     }
 
-    public Article(Integer category_id, String title, String content, byte status, long create_time, long update_time) {
+    public Article(Integer category_id, String title, String content, byte status) {
         this.category_id = category_id;
         this.title = title;
         this.content = content;
         this.status = status;
-        this.create_time = create_time;
-        this.update_time = update_time;
     }
 
     @PrePersist
