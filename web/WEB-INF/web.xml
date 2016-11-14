@@ -8,5 +8,10 @@
             <taglib-uri>http://www.mypager.com/pager</taglib-uri>
             <taglib-location>/WEB-INF/tlds/pagination.tld</taglib-location>
         </taglib>
+
+        <taglib>
+            <taglib-uri>http://www.mytld.com/dateFormat</taglib-uri>
+            <taglib-location>/WEB-INF/tlds/date_tag.tld</taglib-location>
+        </taglib>
     </jsp-config>
 </web-app>

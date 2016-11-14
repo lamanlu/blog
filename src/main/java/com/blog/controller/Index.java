@@ -48,6 +48,8 @@ public class Index {
 
         Article article = this.articleDao.getOne(id);
 
+        System.out.println(article.getCreate_time());
+
         modelMap.addAttribute("article",article);
         return "blog/detail";
     }

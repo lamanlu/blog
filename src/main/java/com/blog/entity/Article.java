@@ -52,6 +52,19 @@ public class Article {
         this.update_time = update_time;
     }
 
+    @PrePersist
+    public void prePersist(){
+        long now = System.currentTimeMillis() / 1000L;
+        this.setCreate_time(now);
+        this.setUpdate_time(now);
+    }
+
+    @PreUpdate
+    public void preUpdate(){
+        long now = System.currentTimeMillis() / 1000L;
+        this.setUpdate_time(now);
+    }
+
     public int getId() {
         return id;
     }
@@ -123,4 +136,5 @@ public class Article {
     public void setTags(Set<Tag> tags) {
         this.tags = tags;
     }
+
 }
