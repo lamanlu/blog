@@ -9,6 +9,8 @@ import org.springframework.ui.ModelMap;
 @Controller
 public class CoreController {
 
+    protected int pageSize = 15;
+
     protected String showNotice(ModelMap modelMap,String message,String url){
         modelMap.addAttribute("message",message);
         modelMap.addAttribute("url",url);

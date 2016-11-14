@@ -53,12 +53,10 @@ public class ArticleController extends CoreController {
 
     @RequestMapping(value = {"","/"},method = RequestMethod.GET)
     public String index(@RequestParam(value = "page",defaultValue = "0") int page,
-                        @RequestParam(value = "limit",defaultValue = "15") int pageSize,
             ModelMap modelMap){
 
-
         Sort sort = new Sort(Sort.Direction.DESC,"id");
-        Pageable pageable = new PageRequest(page,pageSize,sort);
+        Pageable pageable = new PageRequest(page,this.pageSize,sort);
         Page<Article> articlePage = this.articleDao.findAll(pageable);
 
 
