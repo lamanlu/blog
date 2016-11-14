@@ -31,7 +31,7 @@ public class Index {
 
         Sort sort = new Sort(Sort.Direction.DESC,"id");
         Pageable pageable = new PageRequest(page,this.pageSize,sort);
-        Page<Article> articlePage = this.articleDao.findAll(pageable);
+        Page<Article> articlePage = this.articleDao.findByStatusGreaterThan((byte) 0,pageable);
 
         modelMap.addAttribute("title","Home Page Title");
         modelMap.addAttribute("articles",articlePage.getContent());

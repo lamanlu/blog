@@ -13,4 +13,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ArticleDao extends JpaRepository<Article, Integer> {
 
+    Page<Article> findByStatusGreaterThan(byte status,Pageable pageable);
 }
