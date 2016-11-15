@@ -21,6 +21,7 @@ public class MvcConfig extends WebMvcConfigurerAdapter{
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
         super.configureDefaultServletHandling(configurer);
         configurer.enable();
+
     }
 
     @Bean

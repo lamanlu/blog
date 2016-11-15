@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpSession;
+
 /**
  * Created by laman on 16-11-6.
  */
@@ -47,9 +49,6 @@ public class Index {
             ModelMap modelMap){
 
         Article article = this.articleDao.getOne(id);
-
-        System.out.println(article.getCreate_time());
-        System.out.println(article.getUpdate_time());
 
         modelMap.addAttribute("article",article);
         return "blog/detail";
