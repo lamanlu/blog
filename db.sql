@@ -181,6 +181,13 @@ INSERT INTO `type` VALUES (1,'J2EE',1),(2,'Spring',2),(3,'Mybatis',4),(4,'Hibern
 /*!40000 ALTER TABLE `type` ENABLE KEYS */;
 UNLOCK TABLES;
 
+CREATE TABLE `user` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `username` VARCHAR(45) NOT NULL DEFAULT '',
+  `userpwd` CHAR(32) NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
 --
 -- Dumping events for database 'test'
 --
