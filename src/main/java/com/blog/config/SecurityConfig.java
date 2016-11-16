@@ -50,9 +50,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .anyRequest().permitAll()
                     .and()
                 .formLogin()
-                    .loginPage("/singin")
+                    .loginPage("/adm-login")
                     .permitAll()
-                    .failureUrl("/singin?error=1")
+                    .failureUrl("/adm-login?error=1")
                     .loginProcessingUrl("authuser")
                     .and()
                 .logout()
@@ -62,7 +62,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .and()
                 .rememberMe()
                     .rememberMeServices(rememberMeServices())
-                    .key("remember-me-key");
+                    .key("remember-me-key")
+        .and()
+        .csrf().disable();
 
     }
 

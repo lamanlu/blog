@@ -28,6 +28,9 @@ public class Index {
     @Autowired
     private ArticleDao articleDao;
 
+    @Autowired
+    private UserService userService;
+
     private int pageSize = 20;
 
     @RequestMapping(value = "/")
@@ -57,16 +60,18 @@ public class Index {
         return "blog/detail";
     }
 
-    @RequestMapping(value = "test",method = RequestMethod.GET)
+    @RequestMapping(value = "/test",method = RequestMethod.GET)
     @ResponseBody
     public String test(){
 
-        UserService userService = new UserService();
-
         String username = "laman";
         String password = "123456";
+        User user = new User();
+        user.setUsername(username);
+        user.setUserpwd(password);
+//        user.setRole("ROLE_USER");
 
-        userService.createUser(new User(username,password,"ROLE_USER"));
+        this.userService.createUser(user);
 
         return "成功";
     }

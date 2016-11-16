@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class AuthController {
 
-    @RequestMapping(value = "/signin",method = RequestMethod.GET)
+    @RequestMapping(value = "/adm-login",method = RequestMethod.GET)
     public String loginView(){
         return "admin/login";
     }
