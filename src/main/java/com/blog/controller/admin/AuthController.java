@@ -18,4 +18,10 @@ public class AuthController {
         return principal == null ? "admin/login" : "redirect:/";
     }
 
+
+    @RequestMapping(value = "/admin/logout",method = RequestMethod.GET)
+    public String logoutView(){
+        return "admin/logout";
+    }
+
 }
