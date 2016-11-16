@@ -30,7 +30,7 @@ public class UserService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = this.userDao.findByUserName(username);
+        User user = this.userDao.findByUsername(username);
 
         if(user == null){
             throw new UsernameNotFoundException("User Not Found");
@@ -55,7 +55,7 @@ public class UserService implements UserDetailsService {
 
         String username = ((org.springframework.security.core.userdetails.User) auth.getPrincipal()).getUsername();
 
-        return this.userDao.findByUserName(username);
+        return this.userDao.findByUsername(username);
     }
 
     private Authentication authentication(User user){

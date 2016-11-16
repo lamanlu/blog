@@ -12,7 +12,7 @@
 </head>
 <body>
 <h3>Login Page</h3>
-<form name="form1" action="/admin/login" method="post">
+<form name="form1" action="/authuser" method="post">
 <input type="text" name="username" value="" /><br/>
 <input type="password" name="password" value="" /><br/>
 <input type="submit" name="submit" value="登录" />

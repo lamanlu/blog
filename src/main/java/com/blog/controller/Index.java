@@ -2,6 +2,8 @@ package com.blog.controller;
 
 import com.blog.dao.ArticleDao;
 import com.blog.entity.Article;
+import com.blog.entity.User;
+import com.blog.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -12,6 +14,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 
@@ -52,5 +55,19 @@ public class Index {
 
         modelMap.addAttribute("article",article);
         return "blog/detail";
+    }
+
+    @RequestMapping(value = "test",method = RequestMethod.GET)
+    @ResponseBody
+    public String test(){
+
+        UserService userService = new UserService();
+
+        String username = "laman";
+        String password = "123456";
+
+        userService.createUser(new User(username,password,"ROLE_USER"));
+
+        return "成功";
     }
 }

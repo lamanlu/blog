@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class AuthController {
 
-    @RequestMapping(value = "/admin/login",method = RequestMethod.GET)
+    @RequestMapping(value = "/signin",method = RequestMethod.GET)
     public String loginView(){
         return "admin/login";
     }
 
-    @RequestMapping(value = "/admin/login",method = RequestMethod.POST)
+    @RequestMapping(value = "/authuser",method = RequestMethod.POST)
     public String loginAction(){
         return "redirect:/admin/article";
     }
