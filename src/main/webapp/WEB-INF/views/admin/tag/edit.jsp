@@ -13,6 +13,7 @@
     <input type="text" name="name" value="${tag.name}"/>
     <input type="text" name="sort" value="${tag.sort}"/>
     <input type="hidden" name="id" value="${tag.id}"/>
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
     <input type="submit" name="submit" value="保存"/>
 </form>
 

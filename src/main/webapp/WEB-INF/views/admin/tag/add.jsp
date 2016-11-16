@@ -12,6 +12,7 @@
 <form name="form1" action="/admin/tag/save" method="post">
     <input type="text" name="name" value=""/>
     <input type="text" name="sort" value="0"/>
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
     <input type="submit" name="submit" value="保存"/>
 </form>
 

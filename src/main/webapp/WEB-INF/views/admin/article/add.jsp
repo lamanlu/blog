@@ -35,6 +35,7 @@
         </c:forEach>
     </select>
     <br>
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
     <input type="submit" name="submit" value="保存"/>
 </form>
 
