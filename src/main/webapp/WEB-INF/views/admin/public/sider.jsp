@@ -13,6 +13,7 @@
 </head>
 <body>
 <div id="sidebar">
+    <span>Hi Laman, <jsp:include page="../logout.jsp"/></span>
     <ul>
         <li><a href="/admin/category">分类管理</a></li>
         <li><a href="/admin/tag">标签管理</a></li>
