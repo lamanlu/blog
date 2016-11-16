@@ -7,11 +7,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Tag List</title>
-</head>
-<body>
+
+<jsp:include page="../public/sider.jsp"/>
+
 <a href="/admin/tag/add">添加标签</a>
 <table>
     <tr>
@@ -31,5 +29,5 @@
         </tr>
     </c:forEach>
 </table>
-</body>
-</html>
+
+<jsp:include page="../public/footer.jsp"/>

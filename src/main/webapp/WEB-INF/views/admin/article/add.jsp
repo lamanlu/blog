@@ -7,11 +7,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Add Article</title>
-</head>
-<body>
+
+<jsp:include page="../public/sider.jsp"/>
+
 <form name="form1" action="/admin/article/save" method="post">
     标题：<input type="text" name="title" value=""/>
     <br>
@@ -39,5 +37,5 @@
     <br>
     <input type="submit" name="submit" value="保存"/>
 </form>
-</body>
-</html>
+
+<jsp:include page="../public/footer.jsp"/>

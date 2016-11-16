@@ -24,4 +24,10 @@ public class AuthController {
         return "admin/logout";
     }
 
+
+    @RequestMapping(value = {"/admin","/admin/"},method = RequestMethod.GET)
+    public String index(){
+        return "admin/index";
+    }
+
 }
