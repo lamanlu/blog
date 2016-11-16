@@ -12,9 +12,10 @@
 </head>
 <body>
 <h3>Login Page</h3>
-<form name="form1" action="/authuser" method="post">
+<form name="form1" action="/login" method="post">
 <input type="text" name="username" value="" /><br/>
 <input type="password" name="password" value="" /><br/>
+<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 <input type="submit" name="submit" value="登录" />
 </form>
 </body>

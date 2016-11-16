@@ -53,18 +53,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .loginPage("/adm-login")
                     .permitAll()
                     .failureUrl("/adm-login?error=1")
-                    .loginProcessingUrl("authuser")
+                    .loginProcessingUrl("/login")
                     .and()
                 .logout()
-                    .logoutUrl("/singout")
-                    .permitAll()
+//                    .logoutUrl("/logout")
                     .logoutSuccessUrl("/")
                     .and()
                 .rememberMe()
                     .rememberMeServices(rememberMeServices())
                     .key("remember-me-key")
-        .and()
-        .csrf().disable();
+                    .and()
+                .csrf();
 
     }
 
