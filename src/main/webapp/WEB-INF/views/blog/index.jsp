@@ -8,24 +8,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>${title}</title>
-    <style type="text/css">
-        .pagination{
-            display: block;
-            height: 20px;
-            line-height: 20px;
-        }
-
-        .pagination a {
-            font-size: 12px;
-            text-align: center;
-            margin-left: 5px;
-        }
-    </style>
-</head>
-<body>
+<jsp:include page="./public/header.jsp"/>
 <table>
     <c:forEach items="${articles}" var="article">
         <tr>
@@ -38,6 +21,6 @@
         </tr>
     </c:forEach>
 </table>
-<my:pagination url="/admin/article" dataCount="${dataCount}" curPage="${page}" pageSize="${pageSize}" />
-</body>
-</html>
+<my:pagination url="/view" dataCount="${dataCount}" curPage="${page}" pageSize="${pageSize}" />
+
+<jsp:include page="./public/footer.jsp"/>

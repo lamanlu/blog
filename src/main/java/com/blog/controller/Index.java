@@ -3,6 +3,7 @@ package com.blog.controller;
 import com.blog.dao.ArticleDao;
 import com.blog.entity.Article;
 import com.blog.entity.User;
+import com.blog.service.ArticleService;
 import com.blog.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -26,10 +27,10 @@ import javax.servlet.http.HttpSession;
 public class Index {
 
     @Autowired
-    private ArticleDao articleDao;
+    private ArticleService articleService;
 
-    @Autowired
-    private UserService userService;
+//    @Autowired
+//    private UserService userService;
 
     private int pageSize = 20;
 
@@ -37,9 +38,7 @@ public class Index {
     public String Home(@RequestParam(value = "page",defaultValue = "0") int page,
                        ModelMap modelMap){
 
-        Sort sort = new Sort(Sort.Direction.DESC,"id");
-        Pageable pageable = new PageRequest(page,this.pageSize,sort);
-        Page<Article> articlePage = this.articleDao.findByStatusGreaterThan((byte) 0,pageable);
+        Page<Article> articlePage = this.articleService.findPublishedList(page,this.pageSize);
 
         modelMap.addAttribute("title","Home Page Title");
         modelMap.addAttribute("articles",articlePage.getContent());
@@ -54,25 +53,57 @@ public class Index {
             @RequestParam(value = "id", defaultValue = "0") int id,
             ModelMap modelMap){
 
-        Article article = this.articleDao.getOne(id);
+        Article article = this.articleService.findById(id);
 
         modelMap.addAttribute("article",article);
         return "blog/detail";
     }
 
-    @RequestMapping(value = "/test",method = RequestMethod.GET)
-    @ResponseBody
-    public String test(){
+    @RequestMapping(value = "/category", method = RequestMethod.GET)
+    public String ListByCategory(
+            @RequestParam(value = "id", defaultValue = "1") int category_id,
+            @RequestParam(value = "page",defaultValue = "0") int page,
+            ModelMap modelMap){
 
-        String username = "laman";
-        String password = "123456";
-        User user = new User();
-        user.setUsername(username);
-        user.setUserpwd(password);
-//        user.setRole("ROLE_USER");
+        Page<Article> articlePage = this.articleService.findPublishedListByCategory(category_id,page,this.pageSize);
 
-        this.userService.createUser(user);
-
-        return "成功";
+        modelMap.addAttribute("title","Category Page Title");
+        modelMap.addAttribute("articles",articlePage.getContent());
+        modelMap.addAttribute("dataCount",articlePage.getTotalElements());
+        modelMap.addAttribute("page",page);
+        modelMap.addAttribute("pageSize",pageSize);
+        return "blog/category";
     }
+
+    @RequestMapping(value = "/tag", method = RequestMethod.GET)
+    public String ListByTag(
+            @RequestParam(value = "id", defaultValue = "1") int tag_id,
+            @RequestParam(value = "page",defaultValue = "0") int page,
+            ModelMap modelMap){
+
+        Page<Article> articlePage = this.articleService.findPublishedListByTagId(tag_id,page,this.pageSize);
+
+        modelMap.addAttribute("title","Tag Page Title");
+        modelMap.addAttribute("articles",articlePage.getContent());
+        modelMap.addAttribute("dataCount",articlePage.getTotalElements());
+        modelMap.addAttribute("page",page);
+        modelMap.addAttribute("pageSize",pageSize);
+        return "blog/tag";
+    }
+
+//    @RequestMapping(value = "/test",method = RequestMethod.GET)
+//    @ResponseBody
+//    public String test(){
+//
+//        String username = "laman";
+//        String password = "123456";
+//        User user = new User();
+//        user.setUsername(username);
+//        user.setUserpwd(password);
+//        user.setRole("ROLE_USER");
+//
+//        this.userService.createUser(user);
+//
+//        return "成功";
+//    }
 }
