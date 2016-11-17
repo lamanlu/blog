@@ -1,8 +1,9 @@
 package com.blog.controller.admin;
 
-import com.blog.dao.TagDao;
 import com.blog.entity.Tag;
+import com.blog.service.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,13 +20,17 @@ import java.util.List;
 public class TagController extends CoreController {
 
     @Autowired
-    private TagDao tagDao;
+    private TagService tagService;
 
     @RequestMapping(value = {"","/"},method = RequestMethod.GET)
-    public String index(ModelMap modelMap){
+    public String index(@RequestParam(value = "page", defaultValue = "0") int page,
+            ModelMap modelMap){
 
-        List<Tag> tags = this.tagDao.findAll();
-        modelMap.addAttribute("tags",tags);
+        Page<Tag> tags = this.tagService.findAllByPage(page,this.pageSize);
+        modelMap.addAttribute("tags",tags.getContent());
+        modelMap.addAttribute("page",page);
+        modelMap.addAttribute("pageSize",this.pageSize);
+        modelMap.addAttribute("dataCount",tags.getTotalElements());
         return "admin/tag/index";
     }
 
@@ -38,7 +43,7 @@ public class TagController extends CoreController {
     public String saveAction(Tag tag, ModelMap modelMap){
         String msg = "";
         try {
-            this.tagDao.save(tag);
+            this.tagService.save(tag);
             msg = "保存成功";
         }catch (Exception ex){
             msg = ex.toString();
@@ -51,7 +56,7 @@ public class TagController extends CoreController {
             ModelMap modelMap){
 
         try {
-            Tag tag = this.tagDao.findOne(id);
+            Tag tag = this.tagService.findOne(id);
             modelMap.addAttribute("tag",tag);
         }catch (Exception ex){
             return ex.toString();

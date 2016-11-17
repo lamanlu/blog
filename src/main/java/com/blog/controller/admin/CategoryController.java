@@ -2,6 +2,7 @@ package com.blog.controller.admin;
 
 import com.blog.dao.CategoryDao;
 import com.blog.entity.Category;
+import com.blog.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -19,12 +20,12 @@ import java.util.List;
 public class CategoryController extends CoreController {
 
     @Autowired
-    private CategoryDao categoryDao;
+    private CategoryService categoryService;
 
     @RequestMapping(value = {"","/"},method = RequestMethod.GET)
     public String index(ModelMap modelMap){
 
-        List<Category> categories = this.categoryDao.findAll();
+        List<Category> categories = this.categoryService.findAll();
         modelMap.addAttribute("categories",categories);
         return "admin/category/index";
     }
@@ -39,10 +40,10 @@ public class CategoryController extends CoreController {
                             @RequestParam(value = "sort", defaultValue = "0") int sort,
                             ModelMap modelMap){
         String id = "";
-        System.out.println(name);
+
         Category category = new Category(name,sort);
         try {
-            this.categoryDao.save(category);
+            this.categoryService.save(category);
             id = String.valueOf(category.getId());
         }catch (Exception ex){
             return ex.toString();

@@ -22,7 +22,6 @@ public interface ArticleDao extends JpaRepository<Article, Integer> {
     Page<Article> findByStatusGreaterThanAndCategory_id(byte status,int category_id,Pageable pageable);
 
     @Query("SELECT a FROM Article a INNER JOIN a.tags m WHERE m.id = :tag_id AND a.status > :status")
-//    @Query("SELECT p FROM Article p INNER JOIN p.tags t WHERE t.id = :tag_id AND p.status > :status")
     Page<Article> findPublishedByTagId(@Param(value = "status") byte status, @Param(value = "tag_id") int tag_id, Pageable pageable);
 
 

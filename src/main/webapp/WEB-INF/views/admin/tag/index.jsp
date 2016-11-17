@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="my" uri="http://www.mypager.com/pager" %>
 <%--
   Created by IntelliJ IDEA.
   User: LamanLu
@@ -29,5 +30,7 @@
         </tr>
     </c:forEach>
 </table>
+
+<my:pagination url="/admin/tag" dataCount="${dataCount}" curPage="${page}" pageSize="${pageSize}" />
 
 <jsp:include page="../public/footer.jsp"/>

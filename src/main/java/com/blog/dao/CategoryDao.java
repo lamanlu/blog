@@ -11,5 +11,5 @@ import java.util.List;
  */
 @Repository
 public interface CategoryDao extends JpaRepository<Category,Integer> {
-    public List<Category> findByName(String name);
+    public List<Category> findAllByOrderBySortDesc();
 }
