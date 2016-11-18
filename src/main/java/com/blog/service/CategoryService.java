@@ -3,6 +3,7 @@ package com.blog.service;
 import com.blog.dao.CategoryDao;
 import com.blog.entity.Category;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,6 +26,7 @@ public class CategoryService {
         return this.categoryDao.findAll();
     }
 
+    @Cacheable(cacheNames = "category")
     public List<Category> findAllOderBySort(){
         return this.categoryDao.findAllByOrderBySortDesc();
     }

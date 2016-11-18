@@ -1,8 +1,11 @@
 package com.blog.config;
 
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
+import org.springframework.context.annotation.Scope;
+import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 
@@ -17,7 +20,7 @@ public class SessionConfig {
 
     @Bean
     @Profile("company")
-    public JedisConnectionFactory jedisCompanyConnection (){
+    public RedisConnectionFactory jedisCompanyConnection (){
         JedisConnectionFactory redisObj =  new JedisConnectionFactory();
         redisObj.setHostName("192.168.1.192");
         redisObj.setPort(6380);
@@ -26,7 +29,7 @@ public class SessionConfig {
 
     @Bean
     @Profile("home")
-    public JedisConnectionFactory jedisHomeConnection (){
+    public RedisConnectionFactory jedisHomeConnection (){
         JedisConnectionFactory redisObj =  new JedisConnectionFactory();
         redisObj.setHostName("127.0.0.1");
         redisObj.setPort(6379);
