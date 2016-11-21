@@ -37,10 +37,23 @@ public class RedisCacheConfig extends CachingConfigurerSupport {
 
 
     @Bean
-    public RedisTemplate<String , String> redisTemplate(){
+    @Profile("company")
+    public RedisTemplate<String , String> redisTemplateCompany(){
         JedisConnectionFactory jedisConnectionFactory = new JedisConnectionFactory();
         jedisConnectionFactory.setHostName("192.168.1.192");
         jedisConnectionFactory.setPort(7000);
+
+        RedisTemplate<String, String> redisTemplate = new RedisTemplate<String, String>();
+        redisTemplate.setConnectionFactory(jedisConnectionFactory);
+        return redisTemplate;
+    }
+
+    @Bean
+    @Profile("home")
+    public RedisTemplate<String , String> redisTemplateHome(){
+        JedisConnectionFactory jedisConnectionFactory = new JedisConnectionFactory();
+        jedisConnectionFactory.setHostName("127.0.0.1");
+        jedisConnectionFactory.setPort(6379);
 
         RedisTemplate<String, String> redisTemplate = new RedisTemplate<String, String>();
         redisTemplate.setConnectionFactory(jedisConnectionFactory);
